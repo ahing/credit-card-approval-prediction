@@ -21,7 +21,6 @@ With all that being said, determining if a person is an at risk applicant can be
 The datasets used in this classification model are from [Kaggle](https://www.kaggle.com/datasets/rikdifos/credit-card-approval-prediction). Two datasets are provided, those being: `application_record.csv`  and `credit_record.csv` which are found in the data folder.
 
 The following featuring were used in total for this data analysis:
-* `ID`
 * `Gender`
 * `Own_car`
 * `Own_property`
@@ -52,9 +51,9 @@ After each model there was a confusion matrix and classification report made. Th
 
 ## Results
 
-At first, the best model ended up being the baseline model that was fitted with SMOTE data amongst the models that were not undersampled. It had the least amount of false negatives, which was a priority for this project because that essentially means the model predicted that those individuals were deemed safe to be approved for a credit card when in actuality they were a risk. The accuracy of this model ended up being 74%. Sometimes these numbers can be misleading though.
+In the end the 2 best models ended up being the Random Forest model and the model using SMOTE data. Each had around a recall value of ~60% and an accuracy of over 90%. Meaning overall the model predicted 90% correctly and was able to detect at risk clients 60% of the time. Most of the data removal from the datasets came from removing duplicates, which is why the dataset reduced to about 100,000 which is still a significant amount of data.
 
-The model with the best recall value, which I believe matters the most due to this business model is the Random Forest model that used undersampled data. This model had a recall value of 54%, meaning out of all the actually people that owed money, the model predicted 54% of them correctly which is way better than all the other models that had a recall under 20%. Therefore, due to these results I would recommend using this model going further. The accuracy was lower than other models but prioritizing the prediction of those that owe money I believe should take precedent over a bunch of False Positives , which is why the accuracy is misleading in this case. The higher accuracies in the other models were because it predicted more people that were not a risk. Basically, there were way more true negatives than there were true positives as a whole which made it seem like the model's accuracy was predicting a lot of TP's and TN's.
+Out of all the actual people that owed money, thse 2 models predicted ~60% of them correctly which is way better than all the other models that had a recall under 20%. Therefore, due to these results I would recommend using the random forest or SMOTE model going forward. These model were able to get a high accuracy too which helps with identifying clients that can receive a credit card too. 
 
 The major feature that had the greatest impact on this model was a person's age. Other features that had an impact on the model were: a person's total income, their account age, and the years a person was employed for.
 
@@ -73,9 +72,9 @@ The major feature that had the greatest impact on this model was a person's age.
 
 ## Conclusion
 
-All in all, many of the models with the baseline data returned about the same results. All though their prediction of true negatives (predicting those that are not a risky client) were excellent, they didn't have great results when it came to predicting true postives (those that were risky clients). 
+All in all, the best 2 models that came out of this analysis were the Random Forest and model with SMOTE data. Their recall values were over %60 and had accuracies over 90%.
 
-Undersampling the data did give a better result in terms of recall. An underasmpled ramdom forest model predicted 54% of risky clients. Due to these results, I would suggest using this model going forward due to it's ability to predict risky clients.
+Undersampling the data did give a better result in terms of recall; however there was a significant drop in useable data.
 
 In the future to imporove these models, several things can be done. Number 1 would be to try and improve the overall recall value without undersampling. This could be done with more parameter tuning. There were also some features in these models that probably unnecessary like: email, phone, and  work phone to name a few. Reducing noise in these dataset would have probably have a positive affect.
 
